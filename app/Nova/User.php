@@ -60,6 +60,8 @@ class User extends Resource
                 ->onlyOnForms()
                 ->creationRules('required', 'string', 'min:8')
                 ->updateRules('nullable', 'string', 'min:8'),
+
+            Text::make('Country')->nullable(),
         ];
     }
 
@@ -104,6 +106,8 @@ class User extends Resource
      */
     public function actions(Request $request)
     {
-        return [];
+        return [
+            new Actions\SetCountry(),
+        ];
     }
 }
